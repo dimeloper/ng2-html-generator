@@ -8,13 +8,41 @@ import { Entry } from '../models/entry';
 
 
 export class LongDescriptionComponent {
+  public descTitle: string;
+  public descSubtitle: string;
+
   public entries: Entry[];
   newEntry: Entry = new Entry();
   public generatedHtml: string;
 
+  private descTitleLength: number = 0;
+  private descSubtitleLength: number = 0;
+
   constructor() {
-    this.generatedHtml = '<ul class=\"product-desc__list\"></ul>';
+    this.generatedHtml = '<h3 class=\"product-bdesc__tech-title\"></h3>\n\n<h4 class=\"product-bdesc__tech-subtitle\"></h4>\n<ul class=\"product-desc__list\"></ul>';
     this.entries = [];
+    this.descTitle = '';
+    this.descSubtitle = '';
+  }
+
+  onTitleChange() {
+    let titleStart: number = this.generatedHtml.indexOf('<h3 class=\"product-bdesc__tech-title\">');
+    let titleEnd: number = this.generatedHtml.indexOf('</h3>');
+    let isReduced: boolean = this.descTitleLength > this.descTitle.length ? true : false;
+    let offset: number = (isReduced ? 6 : 5);
+    this.generatedHtml = this.removeString(this.generatedHtml, titleStart + 38, this.descTitle.length + offset, isReduced);
+    this.generatedHtml = this.injectString(this.generatedHtml, titleStart + 38, this.descTitle + '</h3>');
+    this.descTitleLength = this.descTitle.length;
+  }
+
+  onSubtitleChange() {
+    let titleStart: number = this.generatedHtml.indexOf('<h4 class=\"product-bdesc__tech-subtitle\">');
+    let titleEnd: number = this.generatedHtml.indexOf('</h4>');
+    let isReduced: boolean = this.descSubtitleLength > this.descSubtitle.length ? true : false;
+    let offset: number = (isReduced ? 6 : 5);
+    this.generatedHtml = this.removeString(this.generatedHtml, titleStart + 41, this.descSubtitle.length + offset, isReduced);
+    this.generatedHtml = this.injectString(this.generatedHtml, titleStart + 41, this.descSubtitle + '</h4>');
+    this.descSubtitleLength = this.descSubtitle.length;
   }
 
   onSubmit() {
@@ -33,23 +61,37 @@ export class LongDescriptionComponent {
   onDeleteRow() {
     this.entries.pop();
     let lastEntryLiStart:number = this.generatedHtml.lastIndexOf('<li ');
-    console.log('start: '+ lastEntryLiStart);
     let lastEntryLiEnd:number = this.generatedHtml.lastIndexOf('</li>');
-console.log('end: '+ lastEntryLiEnd);
     let lastEntryLiLength = lastEntryLiEnd - lastEntryLiStart;
-    console.log('length: '+ lastEntryLiLength);
+
     this.generatedHtml = this.generatedHtml.substring(0, this.generatedHtml.length - (lastEntryLiLength + 10));
     this.generatedHtml += '</ul>';
+  }
+
+  onDeleteSection() {
+    this.entries = [];
+    this.descTitle = '';
+    this.descSubtitle = '';
+    this.generatedHtml = '<h3 class=\"product-bdesc__tech-title\"></h3>\n\n<h4 class=\"product-bdesc__tech-subtitle\"></h4>\n<ul class=\"product-desc__list\"></ul>';
   }
 
   private generateEnrichedEntry(entry: Entry, index: number): string {
       let enrichedEntry: string = '';
       enrichedEntry += '<li class=\"product-desc__entry '+(index % 2 === 0 ? 'dark' : '' )+'\">'
-      enrichedEntry += '<div class=\"product-desc__icon\"><img src=\"/hiotakis_energy/wp-content/uploads/2017/05/tick.png\" /></div>';
+      enrichedEntry += '<div class=\"product-desc__icon\"></div>';
       enrichedEntry += '<div class=\"product-desc__title small\">'+ entry.title +'</div>';
       enrichedEntry += '<div class=\"product-desc__text\">'+ entry.value +'</div>';
       enrichedEntry += '</li>'
       return enrichedEntry;
+  }
+
+  private removeString(str: string, startIndex: number, count: number, isReduced: boolean): string {
+    return str.substr(0, startIndex) + str.substr(startIndex + count - (isReduced ? 0 : 1));
+  }
+
+  private injectString(parentString: string, index: number, injectedString: string) {
+    return parentString.substr(0, index) + injectedString
+      + parentString.substr(index);
   }
 
 }

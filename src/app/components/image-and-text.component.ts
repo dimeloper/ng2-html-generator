@@ -73,7 +73,7 @@ export class ImageAndTextComponent {
   private generateEnrichedEntry(entry: Entry, index: number): string {
     let enrichedEntry: string = '';
     enrichedEntry += '<li class=\"product-bdesc__entry ' + (index % 2 === 0 ? 'dark' : '') + '\">'
-    enrichedEntry += '<div class=\"product-bdesc__icon\"><img src=\"/hiotakis_energy/wp-content/uploads/2017/05/tick.png\"/></div><div class=\"product-bdesc__content\">';
+    enrichedEntry += '<div class=\"product-bdesc__icon\"></div><div class=\"product-bdesc__content\">';
     enrichedEntry += '<div class=\"product-bdesc__header\"><strong>' + entry.title + '</strong></div>';
     enrichedEntry += '<div class=\"product-bdesc__subtitle\">' + entry.value + '</div>';
     enrichedEntry += '</li>'
