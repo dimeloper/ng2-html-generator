@@ -75,7 +75,10 @@ export class LongDescriptionComponent {
     this.entries = [];
     this.descTitle = '';
     this.descSubtitle = '';
-    this.generatedHtml = '<h3 class=\"product-bdesc__tech-title\"></h3>\n\n<h4 class=\"product-bdesc__tech-subtitle\"></h4>\n<ul class=\"product-desc__list\"></ul>';
+    this.generatedHtml = '<h3 class=\"product-bdesc__tech-title\"></h3>\n\n<h4 class=\"product-bdesc__tech-subtitle\"></h4>';
+    this.generatedHtml += '<div class=\"collapsable-bdesc__container\"><div id=\"collapse-fade\" class=\"collapse-fade\"></div><div id=\"target-id2308\" class=\"collapseomatic_content\" style=\"display: none;\">';
+    this.generatedHtml += '\n<ul class=\"product-desc__list\"></ul>';
+
   }
 
   private generateEnrichedEntry(entry: Entry, index: number): string {
