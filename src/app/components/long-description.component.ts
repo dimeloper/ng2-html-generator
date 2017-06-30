@@ -19,6 +19,8 @@ export class LongDescriptionComponent {
   private descTitleLength: number = 0;
   private descSubtitleLength: number = 0;
 
+  private resetCounter: number = 0;
+
   constructor() {
     this.generatedHtml = '<h3 class=\"product-bdesc__tech-title\"></h3>\n\n<h4 class=\"product-bdesc__tech-subtitle\"></h4>\n<ul class=\"product-desc__list\"></ul>';
     this.producedJs = '<h4 id=\"id2308\" class=\"product-bdesc__tech-subtitle collapseomatic colomat-visited\">Όλα τα χαρακτηριστικά</h4><h4 id=\"swap-id2308\" class=\"product-bdesc__tech-subtitle colomat-swap\" style=\"display: none;\">Λιγότερα χαρακτηριστικά</h4>';
@@ -76,9 +78,11 @@ export class LongDescriptionComponent {
     this.descTitle = '';
     this.descSubtitle = '';
     this.generatedHtml = '<h3 class=\"product-bdesc__tech-title\"></h3>\n\n<h4 class=\"product-bdesc__tech-subtitle\"></h4>';
-    this.generatedHtml += '<div class=\"collapsable-bdesc__container\"><div id=\"collapse-fade\" class=\"collapse-fade\"></div><div id=\"target-id2308\" class=\"collapseomatic_content\" style=\"display: none;\">';
+    if(this.resetCounter === 0){
+      this.generatedHtml += '<div class=\"collapsable-bdesc__container\"><div id=\"collapse-fade\" class=\"collapse-fade\"></div><div id=\"target-id2308\" class=\"collapseomatic_content\" style=\"display: none;\">';
+    }
     this.generatedHtml += '\n<ul class=\"product-desc__list\"></ul>';
-
+    this.resetCounter++;
   }
 
   private generateEnrichedEntry(entry: Entry, index: number): string {
