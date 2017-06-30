@@ -1,0 +1,56 @@
+<div class="editor-content">
+  <h2 class="main-heading">Short Description</h2>
+  <table class="table table-hover table-inverse">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Attribute</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of entries">
+        <th scope="row">{{ entry.id }}</th>
+        <td>
+          <div class="form-group">
+            {{ entry.title }}
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            {{ entry.value }}
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <form class="ui form" (ngSubmit)="onSubmit()" #entryForm="ngForm">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="newEntry.title" id="attributeTitle" name="title" placeholder="Enter attribute title">
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="newEntry.value" id="attributeValue" name="value" placeholder="Enter attribute value">
+        </div>
+      </div>
+    </div>
+    <div class="entry-submit">
+      <button *ngIf="showDeleteButton()" (click)="onDeleteRow()" type="button" class="btn btn-danger">
+      Delete last row
+    </button>
+      <button type="submit" class="btn btn-success" [disabled]="!entryForm.form.valid">Add Row</button>
+    </div>
+  </form>
+  <div class="row generated-html">
+    <div class="col-md-12">
+      <h3 class="main-heading">Generated Html</h3>
+      <textarea class="form-control" id="generatedHtml" rows="8" [(ngModel)]="generatedHtml"></textarea>
+    </div>
+  </div>
+</div>

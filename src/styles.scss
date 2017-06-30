@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  background-color: #292B2C;
+  text-align: center;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.btn {
+  margin: 10px;
+}
+
+.main-heading {
+  padding: 10px;
+  text-align: center;
+}
+
+.main-content {
+  color: #fff;
+  padding-bottom: 100px;
+}
+
+.editor-content {
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  border-bottom: 2px solid #f00;
+}
+
+@media(min-width: 768px) {
+  .main-content {
+  padding: 0 10%;
+  }
+}
+
+.generated-html {
+  border-top: 2px solid #ccc;
+}
+
+.button-section {
+  text-align: center;
+}
+
+.entry-submit {
+    padding: 20px;
+    text-align: right;
+}
