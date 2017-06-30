@@ -23,7 +23,7 @@ export class LongDescriptionComponent {
 
   constructor() {
     this.generatedHtml = '<h3 class=\"product-bdesc__tech-title\"></h3>\n\n<h4 class=\"product-bdesc__tech-subtitle\"></h4>\n<ul class=\"product-desc__list\"></ul>';
-    this.producedJs = '<h4 id=\"id2308\" class=\"product-bdesc__tech-subtitle collapseomatic colomat-visited\">Όλα τα χαρακτηριστικά</h4><h4 id=\"swap-id2308\" class=\"product-bdesc__tech-subtitle colomat-swap\" style=\"display: none;\">Λιγότερα χαρακτηριστικά</h4>';
+    this.producedJs = '</div></div><h4 id=\"id2308\" class=\"product-bdesc__tech-subtitle collapseomatic colomat-visited\">Όλα τα χαρακτηριστικά</h4><h4 id=\"swap-id2308\" class=\"product-bdesc__tech-subtitle colomat-swap\" style=\"display: none;\">Λιγότερα χαρακτηριστικά</h4>';
     this.producedJs += '<script type=\"text/javascript\">\nvar button = document.getElementById(\'id2308\');\nbutton.onclick=function(){var fadeElement = document.getElementsByClassName(\'collapse-fade\')[0];\nif(fadeElement.style.visibility === \'visible\' || fadeElement.style.visibility === \'\') {fadeElement.style.visibility = \'hidden\';} else {fadeElement.style.visibility = \'visible\';}}\n</script>';
     this.entries = [];
     this.descTitle = '';
